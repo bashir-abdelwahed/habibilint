@@ -1,3 +1,6 @@
+# TODO: remove poetry!!
+# TODO: use flit instead
+
 [tool.poetry]
 name = "darglint"
 version = "1.8.1"
@@ -28,6 +31,10 @@ neovim = "^0.3.1"
 mypy = "^0.812"
 pydocstyle = "^4.0"
 twine = "^3.1"
+pytest-cov = "^4.0.0"
+
+# must upgrade typing-extensions because poetry is bad!
+
 
 [tool.poetry.scripts]
 darglint = "darglint.driver:main"

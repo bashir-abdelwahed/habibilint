@@ -10,6 +10,8 @@ from typing import (  # noqa: F401
     Set,
 )
 
+from line_profiler import profile
+
 from .function_description import (  # noqa: F401
     FunctionDescription,
 )
@@ -66,7 +68,7 @@ class IntegrityChecker(object):
         # A thread pool for handling checks.  Tasks are added to the
         # pool when `schedule` is executed, if it has a docstring.
         # The pool is collected when `get_error_report_string` is called.
-        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=4)
+        self.executor = concurrent.futures.ProcessPoolExecutor(max_workers=4)
 
     def schedule(self, function):
         # type: (FunctionDescription) -> None
@@ -511,6 +513,7 @@ class IntegrityChecker(object):
 
     def get_error_report(self, verbosity, filename, message_template=None):
         # type: (int, str, str) -> ErrorReport
+        # NOTE: bottleneck! is the shutdown especially when it was a ThreadPoolExecutor ?!
         self.executor.shutdown()
         return ErrorReport(
             errors=self.errors,

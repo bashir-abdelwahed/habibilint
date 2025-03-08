@@ -4,10 +4,10 @@ import ast
 import pathlib
 import sys
 import inspect
+from typing import List
 
-from typing import (
-    List,
-)
+from line_profiler import profile
+
 
 from .function_description import (
     read_program,
@@ -24,8 +24,10 @@ from .strictness import Strictness
 import darglint.errors
 from darglint.error_report import ErrorReport
 
-
+# TODO: use typer instead!?
 # ---------------------- ARGUMENT PARSER -----------------------------
+
+# TODO: 1st task is to add -j / -n (for multiprocessing)
 
 parser = argparse.ArgumentParser(description='Check docstring validity.')
 parser.add_argument(
@@ -186,6 +188,7 @@ parser.add_argument(
 
 # ---------------------- MAIN SCRIPT ---------------------------------
 
+# TODO: get rid of comment type annotations
 
 def get_error_report(filename,
                      verbosity,
@@ -262,7 +265,7 @@ def main():
         print_version()
 
     # Expand directories.
-    files = []
+    files: List[str] = []
     for f in args.files:
         p = pathlib.Path(f)
         if not p.is_dir() and p.suffix == '.py':

@@ -36,6 +36,7 @@ class FunctionAndMethodVisitor(ast.NodeVisitor):
     def visit_ClassDef(self, node):
         # type: (ast.ClassDef) -> ast.AST
         for item in node.body:
+            # NOTE: this means that methods and properties defined inside subclasses aren't parsed by habibilint
             if isinstance(item, ast.FunctionDef) or isinstance(
                 item, ast.AsyncFunctionDef
             ):

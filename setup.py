@@ -1,5 +1,7 @@
 """Defines the package, tests, and dependencies."""
 
+# TODO: use pyproject.toml
+
 import os
 from setuptools import setup, find_packages, Command
 import subprocess

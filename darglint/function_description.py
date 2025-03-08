@@ -125,6 +125,7 @@ class FunctionDescription(object):
 
     """
 
+    # TODO: use baseclass
     def __init__(self, function_type, function):
         # type: (FunctionType, Union[ast.FunctionDef, ast.AsyncFunctionDef]) -> None
         """Create a new FunctionDescription.

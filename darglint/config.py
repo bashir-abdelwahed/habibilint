@@ -355,9 +355,11 @@ def get_config_from_file():  # type: () -> Configuration
 
 
 # The global instance of the config file to use.
+# TODO: use a pydantic BaseModel for this
 _config = get_config_from_file()
 
 
+# TODO: this function is completely unnecessary.
 def get_config():
     """Get the global instance of the configuration.
 
