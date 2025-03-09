@@ -7,8 +7,6 @@ import sys
 import inspect
 from typing import List
 
-from line_profiler import profile
-
 
 from .function_description import (
     read_program,

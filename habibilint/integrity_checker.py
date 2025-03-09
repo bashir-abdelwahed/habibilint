@@ -10,8 +10,6 @@ from typing import (  # noqa: F401
     Set,
 )
 
-from line_profiler import profile
-
 from .function_description import (  # noqa: F401
     FunctionDescription,
 )
