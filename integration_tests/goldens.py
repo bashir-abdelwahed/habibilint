@@ -11,10 +11,10 @@ import json
 from unittest import ( # noqa
     TestCase,
 )
-from darglint.docstring.docstring import (
+from habibilint.docstring.docstring import (
     Docstring,
 )
-from darglint.docstring.sections import (
+from habibilint.docstring.sections import (
     Sections,
 )
 

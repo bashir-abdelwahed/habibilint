@@ -1,16 +1,20 @@
-[![Build Status](https://travis-ci.com/terrencepreilly/darglint.svg?branch=develop)](https://travis-ci.com/terrencepreilly/darglint)
+# habibilint
 
-# Darglint
+<!-- TODO: put badges -->
+
+<p align="center">
+  <img src="logo.png" alt="LOGO">
+</p>
 
 A functional docstring linter which checks whether a docstring's
 description matches the actual function/method implementation.
-*Darglint* expects docstrings to be formatted using the
+*Habibilint* expects docstrings to be formatted using the
 [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html),
 or [Sphinx Style Guide](https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions),
 or [Numpy Style Guide](https://numpydoc.readthedocs.io/en/latest/format.html).
 
 Feel free to submit an issue/pull request if you spot a problem or
-would like a feature in *darglint*.
+would like a feature in *habibilint*.
 
 **Table of Contents**:
 
@@ -29,19 +33,15 @@ would like a feature in *darglint*.
 
 ## Project Status
 
-I no longer work with Python regularly, and I'd like to spend some more
-time on other projects.  So while I'll continue to maintain darglint,
-I likely won't be adding significant new features.  That said, I will
-try to accept pull requests.  See the contribution section for more
-information.  Consider it in maintenance mode.
+Habibilint is a fork of darglint project. The original project is no longer maintained and it is really slow. Habibilint aims to improve both situations.
 
 
 ## Installation
 
-To install *darglint*, use pip.
+To install *Habibilint*, use pip.
 
 ```bash
-pip install darglint
+pip install habibilint
 ```
 
 Or, clone the repository, `cd` to the directory, and
@@ -52,11 +52,13 @@ pip install .
 
 ## Configuration
 
-*darglint* can be configured using a configuration file.  The configuration
+<!-- TODO: make habibilint use only pyproject.toml configuration -->
+
+*habibilint* can be configured using a configuration file.  The configuration
 file must be named either *.darglint*, *setup.cfg*, or *tox.ini*.  It must
 also have a section starting with the section header, `[darglint]`.
 Finally, the configuration file must be located either in the directory
-*darglint* is called from, or from a parent directory of that working
+*habibilint* is called from, or from a parent directory of that working
 directory.
 
 Currently, the configuration file allows us to ignore errors, to specify
@@ -111,7 +113,7 @@ docstring_style=sphinx
 
 ### Strictness Configuration
 
-Strictness determines how lax darglint will be when checking docstrings.
+Strictness determines how lax habibilint will be when checking docstrings.
 There are three levels of strictness available:
 
 - short: One-line descriptions are acceptable; anything
@@ -182,20 +184,19 @@ ignore_raise=ValueError,MyCustomError
 
 ### Logging
 
-When *darglint* fails unexpectedly, you can try to gather more
+When *habibilint* fails unexpectedly, you can try to gather more
 information when submitting a bug by running with logging.
 For example,
 
 ```bash
-darglint --log-level=INFO unexpected_failures.py
+habibilint --log-level=INFO unexpected_failures.py
 ```
 
-*Darglint* accepts the levels, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and
+*Habibilint* accepts the levels, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and
 `CRITICAL`.
 
 
 ## Usage
-
 
 ### Command Line use
 
@@ -203,13 +204,13 @@ Given a python source file, `serializers.py`, you would check the docstrings
 as follows:
 
 ```bash
-darglint serializers.py
+habibilint serializers.py
 ```
 
-You can give an optional verbosity setting to *darglint*.  For example,
+You can give an optional verbosity setting to *habibilint*.  For example,
 
 ```bash
-darglint -v 2 *.py
+habibilint -v 2 *.py
 ```
 
 Would give a description of the error along with information as to this
@@ -221,13 +222,13 @@ is a python format string.  For example, if we pass the message
 template
 
 ```bash
-darglint -m "{path}:{line} -> {msg_id}" darglint/driver.py
+habibilint -m "{path}:{line} -> {msg_id}" habibilint/driver.py
 ```
 
 Then we would get back error messages like
 
 ```bash
-darglint/driver.py :61 -> DAR101
+habibilint/driver.py :61 -> DAR101
 ```
 
 The following attributes can be passed to the format string:
@@ -240,16 +241,16 @@ The following attributes can be passed to the format string:
 The message template can also be specified in the configuration file
 as the value `message_template`.
 
-*darglint* is particularly useful when combined with the utility, `find`.
+*habibilint* is particularly useful when combined with the utility, `find`.
 This allows us to check all of the files in our project at once.  For example,
-when eating my own dogfood (as I tend to do), I invoke *darglint* as follows:
+when eating my own dogfood (as I tend to do), I invoke *habibilint* as follows:
 
 ```bash
-find . -name "*.py" | xargs darglint
+find . -name "*.py" | xargs habibilint
 ```
 
 Where I'm searching all files ending in ".py" recursively from the
-current directory, and calling *darglint* on each one in turn.
+current directory, and calling *habibilint* on each one in turn.
 
 ### Ignoring Errors in a Docstring
 
@@ -325,14 +326,14 @@ have put it on its own line, as `# noqa: DAR402 ZeroDivisionError`.
 
 ### Type Annotations
 
-Darglint parses type annotations in docstrings, and can, optionally,
+Habibilint parses type annotations in docstrings, and can, optionally,
 compare the documented type to the actual type annotation.  This can
 be useful when migrating a codebase to use type annotations.
 
-In order to make these comparisons, Darglint only accepts types
+In order to make these comparisons, Habibilint only accepts types
 accepted by Python (see [PEP 484](https://www.python.org/dev/peps/pep-0484/).)
 That is, it does not accept parentheses in type signatures. (If
-parentheses are used in the type signature, Darglint will mark that
+parentheses are used in the type signature, Habibilint will mark that
 argument as missing.  See Issue #90.)
 
 
@@ -377,17 +378,17 @@ enable=DAR104
 
 ## Scope
 
-Darglint's primary focus is to identify incorrect and missing documentationd
+Habibilint's primary focus is to identify incorrect and missing documentationd
 of a function's signature. Checking style is a stretch goal, and is supported
-on a best-effort basis.  Darglint does not check stylistic preferences expressed
+on a best-effort basis.  Habibilint does not check stylistic preferences expressed
 by tools in the Python Code Quality Authority (through tools such as `pydocstyle`).
-So when using Darglint, it may be a good idea to also use `pydocstyle`, if you
+So when using Habibilint, it may be a good idea to also use `pydocstyle`, if you
 want to enforce style.  (For example, `pydocstyle` requires the short summary
-to be separated from other sections by a line break.  Darglint makes no such check.)
+to be separated from other sections by a line break.  Habibilint makes no such check.)
 
 ## Sphinx
 
-Darglint can handle sphinx-style docstrings, but imposes some restrictions
+Habibilint can handle sphinx-style docstrings, but imposes some restrictions
 on top of the Sphinx style. For example, all fields (such as `:returns:`)
 must be the last items in the docstring.  They must be together, and all
 indents should be four spaces.  These restrictions may be loosened at a
@@ -396,8 +397,8 @@ later date.
 To analyze Sphinx-style docstrings, pass the style flag to the command:
 
 ```bash
-darglint -s sphinx example.py
-darglint --docstring-style sphinx example.py
+habibilint -s sphinx example.py
+habibilint --docstring-style sphinx example.py
 ```
 
 Alternatively, you can specify the style in the configuration file using
@@ -410,13 +411,13 @@ docstring_style=sphinx
 
 ## Numpy
 
-Darglint now has an initial implementation for Numpy-style docstrings.
+Habibilint now has an initial implementation for Numpy-style docstrings.
 Similarly to Sphinx-style docstrings, you can pass a style flag to the
 command:
 
 ```bash
-darglint -s numpy example.py
-darglint --docstring-style numpy example.py
+habibilint -s numpy example.py
+habibilint --docstring-style numpy example.py
 ```
 
 Or set it in a configuration file:
@@ -433,13 +434,13 @@ Add issues or suggestions to the tracking bug, Issue #69.
 
 ### Flake8
 
-Darglint can be used in conjunction with Flake8 as a plugin.  The only
-setup necessary is to install Flake8 and Darglint in the same environment.
-Darglint will pull its configuration from Flake8. So, if you would like to
+Habibilint can be used in conjunction with Flake8 as a plugin.  The only
+setup necessary is to install Flake8 and Habibilint in the same environment.
+Habibilint will pull its configuration from Flake8. So, if you would like to
 lint Sphinx-style comments, then you should have `docstring_style=sphinx` in a
 Flake8 configuration file in the project directory.  The settings would
 be entered under the flake8 configuration, not a separate configuration
-for Darglint.  E.g.:
+for Habibilint.  E.g.:
 
 ```ini
 [flake8]
@@ -466,16 +467,16 @@ to `.pre-commit-config.yaml` in your repository:
 
 ```yaml
 repos:
--   repo: https://github.com/terrencepreilly/darglint
-    rev: master
+-   repo: https://github.com/bashir-abdelwahed/habibilint
+    rev: main
     hooks:
-    - id: darglint
+    - id: habibilint
 ```
 
 Then run `pre-commit install` and you're ready to go. Before commiting,
-`darglint` will be run on the staged files. If it finds any errors, the user
+`habibilint` will be run on the staged files. If it finds any errors, the user
 is notified and the commit is aborted. Store necessary configuration (such as
-error formatting) in `.darglint`, `setup.cfg` or `tox.ini`.
+error formatting) in `.habibilint`, `setup.cfg` or `tox.ini`.
 
 
 ## Roadmap
@@ -486,7 +487,7 @@ ideas are moonshots and may not get implemented.  They are ordered
 roughly according to current priority/feasibility.
 
 - [ ] Expose command-line options through sphinx.
-- [ ] Robust logging for errors caused/encountered by *darglint*.
+- [ ] Robust logging for errors caused/encountered by *habibilint*.
 - [ ] Check class docstrings (See Issue #25).
 - [ ] Autoformatting docstrings.  (See Milestone #3).
 - [ ] Optional aggressive style checking through command line flag.
@@ -499,16 +500,16 @@ their next API stabilizes, so this may take some time.)
 
 ### Development Setup
 
-Install `darglint`. First, clone the repository:
+Install `habibilint`. First, clone the repository:
 
 ```bash
-git clone https://github.com/terrencepreilly/darglint.git
+git clone https://https://github.com/bashir-abdelwahed/habibilint
 ```
 
 `cd` into the directory, create a virtual environment (optional), then setup:
 
 ```bash
-cd darglint/
+cd habibilint/
 virtualenv -p python3.6 .env
 source .env/bin/activate
 pip install -e .
@@ -535,7 +536,7 @@ pytest
 ```
 
 This project tries to conform by the styles imposed by `pycodestyle`
-and `pydocstyle`, as well as by `darglint` itself.
+and `pydocstyle`, as well as by `habibilint` itself.
 
 
 A dockerfile exists for testing with Python3.4.  Although it's not
@@ -545,9 +546,9 @@ test using something like
 
 ```bash
 pushd docker-build
-docker build -t darglint-34 -f Dockerfile.test34 .
+docker build -t habibilint-34 -f Dockerfile.test34 .
 popd
-docker run -it --rm -v $(pwd):/code darglint-34 pytest
+docker run -it --rm -v $(pwd):/code habibilint-34 pytest
 ```
 
 ### Contribution
@@ -558,4 +559,4 @@ be accepted through pull requests.  New features should include unit tests,
 and, of course, properly formatted documentation.
 
 Also, check out the wiki prior to updating the grammar.  It includes a
-description of darglint's parsing pipline.
+description of habibilint's parsing pipline.

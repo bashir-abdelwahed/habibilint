@@ -9,11 +9,11 @@ from typing import (
 )
 from unittest import skip
 
-from darglint.token import (
+from habibilint.token import (
     TokenType,
     Token,
 )
-from darglint.config import (
+from habibilint.config import (
     get_config,
     Configuration,
 )

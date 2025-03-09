@@ -7,7 +7,7 @@ from unittest import (
     TestCase,
 )
 
-from darglint.node import (
+from habibilint.node import (
     CykNode,
 )
 

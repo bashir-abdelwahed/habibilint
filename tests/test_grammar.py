@@ -2,8 +2,8 @@
 
 from unittest import TestCase
 
-from darglint.parse.grammar import BaseGrammar
-from darglint.parse.grammar import Production as P
+from habibilint.parse.grammar import BaseGrammar
+from habibilint.parse.grammar import Production as P
 
 
 class GrammarTest(TestCase):

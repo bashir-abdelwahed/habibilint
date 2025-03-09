@@ -1,7 +1,7 @@
--   id: darglint
-    name: darglint
-    description: '`darglint` is a tool for linting python docstrings.'
-    entry: darglint
+-   id: habibilint
+    name: habibilint
+    description: '`habibilint` is a tool for linting python docstrings.'
+    entry: habibilint
     language: python
     types: [python]
     require_serial: true

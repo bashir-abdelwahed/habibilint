@@ -196,7 +196,7 @@ class ParserTestCase(TestCase):
 
     def test_parse_from_import(self):
         grammar = '''
-            from darglint.errors import (
+            from habibilint.errors import (
                 ItemIndentationError,
             )
             <A> ::= "A"
@@ -206,10 +206,10 @@ class ParserTestCase(TestCase):
 
     def test_parse_multiple_external_imports(self):
         grammar = '''
-            from darglint.errors import (
+            from habibilint.errors import (
                 ItemIndentationError,
             )
-            from darglint.parse.identifiers import (
+            from habibilint.parse.identifiers import (
                 ArgumentIdentifier,
             )
 

@@ -6,33 +6,32 @@ from unittest.mock import (
 )
 
 import ast
-from darglint.analysis.raise_visitor import (
+from habibilint.analysis.raise_visitor import (
     RaiseVisitor,
 )
-from darglint.config import (
+from habibilint.config import (
     AssertStyle,
 )
-from darglint.function_description import (
+from habibilint.function_description import (
     read_program,
     get_function_descriptions,
 )
-from darglint.utils import (
+from habibilint.utils import (
     ConfigurationContext,
 )
 
 
 def yield_modules():
     # type: () -> Iterable[str]
-    for path, folders, filenames in os.walk('integration_tests/repos'):
+    for path, folders, filenames in os.walk("integration_tests/repos"):
         for filename in filenames:
-            if not filename.endswith('.py'):
+            if not filename.endswith(".py"):
                 continue
             yield os.path.join(path, filename)
 
 
 class RaiseAnalysisTest(TestCase):
-
-    @patch('darglint.analysis.raise_visitor.logger')
+    @patch("habibilint.analysis.raise_visitor.logger")
     def test_no_errors_logged_ever(self, mock_logger):
         """Make sure that no functions kill the analysis.
 
@@ -62,11 +61,11 @@ class RaiseAnalysisTest(TestCase):
                     try:
                         visitor.visit(function.function)
                     except:
-                        print('Visitor error raised during {}'.format(module))
+                        print("Visitor error raised during {}".format(module))
                         raise
                     self.assertFalse(
                         mock_logger.error.called,
-                        'Unexpected error log at {}'.format(
+                        "Unexpected error log at {}".format(
                             module,
-                        )
+                        ),
                     )

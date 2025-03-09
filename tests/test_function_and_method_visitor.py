@@ -3,7 +3,7 @@ from unittest import (
     TestCase,
 )
 
-from darglint.analysis.function_and_method_visitor import (
+from habibilint.analysis.function_and_method_visitor import (
     FunctionAndMethodVisitor,
 )
 

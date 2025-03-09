@@ -2,30 +2,30 @@ from unittest import TestCase
 
 from flake8.options.manager import OptionManager
 
-from darglint.config import get_config
-from darglint.docstring.style import DocstringStyle
-from darglint.flake8_entry import DarglintChecker
-from darglint.strictness import Strictness
+from habibilint.config import get_config
+from habibilint.docstring.style import DocstringStyle
+from habibilint.flake8_entry import HabibilintChecker
+from habibilint.strictness import Strictness
+
 
 class Flake8TestCase(TestCase):
     """Tests that flake8 config is parsed correctly."""
 
     def test_config_parsed(self):
         default_config = get_config().get_default_instance()
-        parser = OptionManager('', '')
-        DarglintChecker.add_options(parser)
+        parser = OptionManager("", "")
+        HabibilintChecker.add_options(parser)
 
         options, args = parser.parse_args([])
-        DarglintChecker.parse_options(options)
-        self.assertEqual(default_config.style, DarglintChecker.config.style)
+        HabibilintChecker.parse_options(options)
+        self.assertEqual(default_config.style, HabibilintChecker.config.style)
 
-        argv = [
-            '--docstring-style=numpy',
-            '--strictness=short'
-        ]
+        argv = ["--docstring-style=numpy", "--strictness=short"]
         options, args = parser.parse_args(argv)
 
-        DarglintChecker.config = default_config
-        DarglintChecker.parse_options(options)
-        self.assertEqual(DarglintChecker.config.style, DocstringStyle.NUMPY)
-        self.assertEqual(DarglintChecker.config.strictness, Strictness.SHORT_DESCRIPTION)
+        HabibilintChecker.config = default_config
+        HabibilintChecker.parse_options(options)
+        self.assertEqual(HabibilintChecker.config.style, DocstringStyle.NUMPY)
+        self.assertEqual(
+            HabibilintChecker.config.strictness, Strictness.SHORT_DESCRIPTION
+        )

@@ -4,30 +4,30 @@ from random import (
     randint,
 )
 
-from darglint.parse.google import (
+from habibilint.parse.google import (
     top_parse,
     lookup,
     parse,
 )
-from darglint.token import (
+from habibilint.token import (
     Token,
     TokenType,
 )
-from darglint.lex import (
+from habibilint.lex import (
     lex,
     condense,
 )
-from darglint.parse.cyk import (
+from habibilint.parse.cyk import (
     parse as cyk_parse,
 )
-from darglint.parse.identifiers import (
+from habibilint.parse.identifiers import (
     ArgumentIdentifier,
     ExceptionIdentifier,
 )
 from .utils import (
     random_tokens,
 )
-from darglint.utils import (
+from habibilint.utils import (
     CykNodeUtils,
 )
 
