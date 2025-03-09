@@ -25,7 +25,7 @@ class BaseDocstring(ABC):
 
     """
 
-    supported_sections = tuple(Sections) # type: ClassVar[Tuple[Sections, ...]]
+    supported_sections = tuple(Sections)  # type: ClassVar[Tuple[Sections, ...]]
 
     @abstractmethod
     def get_section(self, section):
@@ -101,7 +101,7 @@ class BaseDocstring(ABC):
         """Get any style errors annotated on the tree.
 
         Yields:
-            Instances of DarglintErrors for style issues.
+            Instances of HabibilintErrors for style issues.
 
         # noqa: I302
 
@@ -142,9 +142,7 @@ class BaseDocstring(ABC):
 
         """
         sections = {
-            section
-            for section in self.supported_sections
-            if self.get_section(section)
+            section for section in self.supported_sections if self.get_section(section)
         }
         if strictness == Strictness.SHORT_DESCRIPTION:
             return sections == {Sections.SHORT_DESCRIPTION}

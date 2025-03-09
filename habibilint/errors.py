@@ -1,4 +1,4 @@
-"""This module describes all errors which can be reported by Darglint.
+"""This module describes all errors which can be reported by Habibilint.
 
 Errors can be anything from being unable to parse a docstring,
 to having docstring arguments out of sync with the function/method
@@ -28,7 +28,7 @@ from typing import (
 )
 
 
-class DarglintError(BaseException):
+class HabibilintError(BaseException):
     """The base error class for any  error."""
 
     # The shortest error message possible.  Should use abbreviated
@@ -106,7 +106,7 @@ class DarglintError(BaseException):
             raise NotImplementedError
 
 
-class PythonSyntaxError(DarglintError):
+class PythonSyntaxError(HabibilintError):
     """Describes a syntax error in parsing the python module.."""
 
     error_code = "DAR000"
@@ -125,7 +125,7 @@ class PythonSyntaxError(DarglintError):
         self.line_numbers = (source.lineno or 0, source.lineno or 0)
 
 
-class GenericSyntaxError(DarglintError):
+class GenericSyntaxError(HabibilintError):
     """Describes that something went wrong in parsing the docstring."""
 
     error_code = "DAR001"
@@ -150,7 +150,7 @@ class GenericSyntaxError(DarglintError):
         )
 
 
-class EmptyDescriptionError(DarglintError):
+class EmptyDescriptionError(HabibilintError):
     """Describes when an argument/exception lacks a description."""
 
     error_code = "DAR002"
@@ -176,7 +176,7 @@ class EmptyDescriptionError(DarglintError):
         )
 
 
-class IndentError(DarglintError):
+class IndentError(HabibilintError):
     """Describes when a line is under-indented or over-indented."""
 
     error_code = "DAR003"
@@ -200,7 +200,7 @@ class IndentError(DarglintError):
         )
 
 
-class ExcessNewlineError(DarglintError):
+class ExcessNewlineError(HabibilintError):
     """Describes when a docstring has an extra newline where it shouldn't."""
 
     error_code = "DAR004"
@@ -216,7 +216,7 @@ class ExcessNewlineError(DarglintError):
         )
 
 
-class EmptyTypeError(DarglintError):
+class EmptyTypeError(HabibilintError):
     """Describes when an item has parentheses, but no type."""
 
     error_code = "DAR005"
@@ -242,7 +242,7 @@ class EmptyTypeError(DarglintError):
         )
 
 
-class MissingParameterError(DarglintError):
+class MissingParameterError(HabibilintError):
     """Describes when a docstring is missing a parameter in the definition."""
 
     error_code = "DAR101"
@@ -266,7 +266,7 @@ class MissingParameterError(DarglintError):
         )
 
 
-class ExcessParameterError(DarglintError):
+class ExcessParameterError(HabibilintError):
     """Describes when a docstring contains a parameter not in function."""
 
     error_code = "DAR102"
@@ -290,7 +290,7 @@ class ExcessParameterError(DarglintError):
         )
 
 
-class ParameterTypeMismatchError(DarglintError):
+class ParameterTypeMismatchError(HabibilintError):
     """Describes when a docstring parameter type doesn't match function."""
 
     error_code = "DAR103"
@@ -323,7 +323,7 @@ class ParameterTypeMismatchError(DarglintError):
         )
 
 
-class ParameterTypeMissingError(DarglintError):
+class ParameterTypeMissingError(HabibilintError):
     """Describes when a argument definition has no type specified"""
 
     error_code = "DAR104"
@@ -348,7 +348,7 @@ class ParameterTypeMissingError(DarglintError):
         )
 
 
-class ParameterMalformedError(DarglintError):
+class ParameterMalformedError(HabibilintError):
     """Describes when an argument type is malformed."""
 
     error_code = "DAR105"
@@ -370,7 +370,7 @@ class ParameterMalformedError(DarglintError):
         )
 
 
-class MissingReturnError(DarglintError):
+class MissingReturnError(HabibilintError):
     """Describes when a docstring is missing a return from definition."""
 
     error_code = "DAR201"
@@ -394,7 +394,7 @@ class MissingReturnError(DarglintError):
         )
 
 
-class ExcessReturnError(DarglintError):
+class ExcessReturnError(HabibilintError):
     """Describes when a docstring has a return not in definition."""
 
     error_code = "DAR202"
@@ -418,7 +418,7 @@ class ExcessReturnError(DarglintError):
         )
 
 
-class ReturnTypeMismatchError(DarglintError):
+class ReturnTypeMismatchError(HabibilintError):
     """Describes when a docstring parameter type doesn't match function."""
 
     error_code = "DAR203"
@@ -448,7 +448,7 @@ class ReturnTypeMismatchError(DarglintError):
         )
 
 
-class MissingYieldError(DarglintError):
+class MissingYieldError(HabibilintError):
     """Describes when a docstring is missing a yield present in definition."""
 
     error_code = "DAR301"
@@ -472,7 +472,7 @@ class MissingYieldError(DarglintError):
         )
 
 
-class ExcessYieldError(DarglintError):
+class ExcessYieldError(HabibilintError):
     """Describes when a docstring has a yield not in definition."""
 
     error_code = "DAR302"
@@ -496,7 +496,7 @@ class ExcessYieldError(DarglintError):
         )
 
 
-class MissingRaiseError(DarglintError):
+class MissingRaiseError(HabibilintError):
     """Describes when a docstring is missing an exception raised."""
 
     error_code = "DAR401"
@@ -521,7 +521,7 @@ class MissingRaiseError(DarglintError):
         )
 
 
-class ExcessRaiseError(DarglintError):
+class ExcessRaiseError(HabibilintError):
     """Describes when a docstring describes an exception not explicitly raised.
 
     This error should not be included by default.  We assume that the user
@@ -553,7 +553,7 @@ class ExcessRaiseError(DarglintError):
         )
 
 
-class ExcessVariableError(DarglintError):
+class ExcessVariableError(HabibilintError):
     """Describes when a docstring describes a variable which is not defined."""
 
     error_code = "DAR501"

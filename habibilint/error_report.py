@@ -13,7 +13,7 @@ from .function_description import (
     get_line_number_from_function,
 )
 
-from .errors import DarglintError  # noqa
+from .errors import HabibilintError  # noqa
 
 
 class ErrorReport(object):
@@ -26,11 +26,11 @@ class ErrorReport(object):
         verbosity=2,
         message_template=None,
     ):
-        # type: (List[DarglintError], str, int, str) -> None
+        # type: (List[HabibilintError], str, int, str) -> None
         """Create a new error report.
 
         Args:
-            errors: A list of DarglintError instances.
+            errors: A list of HabibilintError instances.
             filename: The name of the file the error came from.
             verbosity: A number in the set, {1, 2}, representing low
                 and high verbosity.
@@ -44,7 +44,7 @@ class ErrorReport(object):
         self.errors = errors
         self.error_dict = self._group_errors_by_function()
         if message_template is None:
-            self.message_template = '{path}:{obj}:{line}: {msg_id}: {msg}'
+            self.message_template = "{path}:{obj}:{line}: {msg_id}: {msg}"
         else:
             self.message_template = message_template
 
@@ -53,7 +53,7 @@ class ErrorReport(object):
         self.errors.sort(key=lambda x: x.function.lineno)
 
     def _group_errors_by_function(self):
-        # type: () -> Dict[Union[ast.FunctionDef, ast.AsyncFunctionDef], List[DarglintError]]  # noqa: E501
+        # type: () -> Dict[Union[ast.FunctionDef, ast.AsyncFunctionDef], List[HabibilintError]]  # noqa: E501
         """Sort the current errors by function, and put into an OrderedDict.
 
         Returns:
@@ -72,7 +72,7 @@ class ErrorReport(object):
         # Sort all of the errors returned by the function
         # alphabetically.
         for key in error_dict:
-            error_dict[key].sort(key=lambda x: x.message() or '')
+            error_dict[key].sort(key=lambda x: x.message() or "")
 
         # Sort all of the errors returned by the key
         # by the line numbers.
@@ -81,7 +81,7 @@ class ErrorReport(object):
 
         return error_dict
 
-    def _get_error_description(self, error):  # type: (DarglintError) -> str
+    def _get_error_description(self, error):  # type: (HabibilintError) -> str
         """Get the error description.
 
         Args:
@@ -92,8 +92,7 @@ class ErrorReport(object):
 
         """
         line_number = get_line_number_from_function(error.function)
-        if (hasattr(error.function, 'decorator_list')
-                and error.function.decorator_list):
+        if hasattr(error.function, "decorator_list") and error.function.decorator_list:
             line_number += len(error.function.decorator_list)
         if error.line_numbers:
             line_number += error.line_numbers[0] + 1
@@ -113,12 +112,12 @@ class ErrorReport(object):
 
         """
         if len(self.errors) == 0:
-            return ''
+            return ""
         ret = list()
         for function in self.error_dict:
             for error in self.error_dict[function]:
                 ret.append(self._get_error_description(error))
-        return '\n'.join(ret)
+        return "\n".join(ret)
 
     def flake8_report(self):
         # type: () -> Iterator[Tuple[int, int, str]]
@@ -129,15 +128,17 @@ class ErrorReport(object):
                 # the correct line number?  Why do we have to handle decorators
                 # here?
                 line_number = get_line_number_from_function(error.function)
-                if (hasattr(error.function, 'decorator_list')
-                        and error.function.decorator_list):
+                if (
+                    hasattr(error.function, "decorator_list")
+                    and error.function.decorator_list
+                ):
                     line_number += len(error.function.decorator_list)
                 if error.line_numbers:
                     line_number += error.line_numbers[0] + 1
                 else:
                     line_number += 1
                 # TODO: Do we need verbosity here?
-                message = '{} {}'.format(
+                message = "{} {}".format(
                     error.error_code,
                     error.message(self.verbosity),
                 )

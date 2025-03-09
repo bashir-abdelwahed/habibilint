@@ -20,7 +20,7 @@ from .docstring.docstring import Docstring
 from .docstring.sections import Sections
 from .docstring.style import DocstringStyle
 from .errors import (  # noqa: F401
-    DarglintError,
+    HabibilintError,
     ExcessParameterError,
     ExcessRaiseError,
     ExcessReturnError,
@@ -59,7 +59,7 @@ class IntegrityChecker(object):
                 for development.
 
         """
-        self.errors = list()  # type: List[DarglintError]
+        self.errors = list()  # type: List[HabibilintError]
         self._sorted = True
         self.config = get_config()
         self.raise_errors = raise_errors

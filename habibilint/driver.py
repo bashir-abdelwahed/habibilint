@@ -240,8 +240,8 @@ def print_error_list():
     errors = list()  # type: List[str]
     for name, obj in inspect.getmembers(habibilint.errors, inspect.isclass):
         if (
-            issubclass(obj, habibilint.errors.DarglintError)
-            and obj != habibilint.errors.DarglintError
+            issubclass(obj, habibilint.errors.HabibilintError)
+            and obj != habibilint.errors.HabibilintError
         ):
             errors.append("{}: {}".format(obj.error_code, obj.description))
     errors.sort()

@@ -41,7 +41,7 @@ class HabibilintChecker(object):
             return
 
         # Remember the last line number, so that if there is an
-        # exception raised by Darglint, we can at least give a decent
+        # exception raised by Habibilint, we can at least give a decent
         # idea of where it was raised.
         last_line = 1
         try:
@@ -74,14 +74,14 @@ class HabibilintChecker(object):
             "--docstring-style",
             default=defaults.style.name,
             parse_from_config=True,
-            help="Docstring style to use for Darglint",
+            help="Docstring style to use for Habibilint",
         )
 
         option_manager.add_option(
             "--strictness",
             default=defaults.strictness.name,
             parse_from_config=True,
-            help="Strictness level to use for Darglint",
+            help="Strictness level to use for Habibilint",
         )
 
         option_manager.add_option(
@@ -89,7 +89,7 @@ class HabibilintChecker(object):
             type=str,
             help=(
                 "Methods/function names matching this regex will be skipped "
-                "by Darglint during analysis."
+                "by Habibilint during analysis."
             ),
         )
 

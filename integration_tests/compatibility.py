@@ -15,7 +15,7 @@ ERROR = re.compile(r"[A-Z]{1,3}\d{3}")
 
 
 class CompatibilityTest(TestCase):
-    """A simple compatibility test for Darglint.
+    """A simple compatibility test for Habibilint.
 
     This test attempts to ensure that the error
     checks with habibilint are a superset of the errors

@@ -6,7 +6,7 @@ which CYK can handle without devolving into a terrible
 complexity. (It has a worst case of O(n^3).
 
 There are faster, on average, algorithms, which might
-be better suited to the average task of Darglint.
+be better suited to the average task of Habibilint.
 However, CYK is relatively simple, and is well documented.
 (Others, like chart parsing, are much more difficult
 to find examples of.)
@@ -38,10 +38,7 @@ def parse(grammar, tokens):
         return None
     n = len(tokens)
     r = len(grammar.productions)
-    P = [
-        [[None for _ in range(r)] for _ in range(n)]
-        for _ in range(n)
-    ]  # type: List[List[List[Optional[CykNode]]]]
+    P = [[[None for _ in range(r)] for _ in range(n)] for _ in range(n)]  # type: List[List[List[Optional[CykNode]]]]
     lookup = grammar.get_symbol_lookup()
     for s, token in enumerate(tokens):
         for v, production in enumerate(grammar.productions):

@@ -1,5 +1,11 @@
 # habibilint
 
+<!-- TODO: put badges -->
+
+<p align="center">
+  <img src="logo.png" alt="LOGO">
+</p>
+
 A functional docstring linter which checks whether a docstring's
 description matches the actual function/method implementation.
 *Habibilint* expects docstrings to be formatted using the
@@ -186,7 +192,7 @@ For example,
 habibilint --log-level=INFO unexpected_failures.py
 ```
 
-*Darglint* accepts the levels, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and
+*Habibilint* accepts the levels, `DEBUG`, `INFO`, `WARNING`, `ERROR`, and
 `CRITICAL`.
 
 
@@ -320,14 +326,14 @@ have put it on its own line, as `# noqa: DAR402 ZeroDivisionError`.
 
 ### Type Annotations
 
-Darglint parses type annotations in docstrings, and can, optionally,
+Habibilint parses type annotations in docstrings, and can, optionally,
 compare the documented type to the actual type annotation.  This can
 be useful when migrating a codebase to use type annotations.
 
-In order to make these comparisons, Darglint only accepts types
+In order to make these comparisons, Habibilint only accepts types
 accepted by Python (see [PEP 484](https://www.python.org/dev/peps/pep-0484/).)
 That is, it does not accept parentheses in type signatures. (If
-parentheses are used in the type signature, Darglint will mark that
+parentheses are used in the type signature, Habibilint will mark that
 argument as missing.  See Issue #90.)
 
 
@@ -372,17 +378,17 @@ enable=DAR104
 
 ## Scope
 
-Darglint's primary focus is to identify incorrect and missing documentationd
+Habibilint's primary focus is to identify incorrect and missing documentationd
 of a function's signature. Checking style is a stretch goal, and is supported
-on a best-effort basis.  Darglint does not check stylistic preferences expressed
+on a best-effort basis.  Habibilint does not check stylistic preferences expressed
 by tools in the Python Code Quality Authority (through tools such as `pydocstyle`).
-So when using Darglint, it may be a good idea to also use `pydocstyle`, if you
+So when using Habibilint, it may be a good idea to also use `pydocstyle`, if you
 want to enforce style.  (For example, `pydocstyle` requires the short summary
-to be separated from other sections by a line break.  Darglint makes no such check.)
+to be separated from other sections by a line break.  Habibilint makes no such check.)
 
 ## Sphinx
 
-Darglint can handle sphinx-style docstrings, but imposes some restrictions
+Habibilint can handle sphinx-style docstrings, but imposes some restrictions
 on top of the Sphinx style. For example, all fields (such as `:returns:`)
 must be the last items in the docstring.  They must be together, and all
 indents should be four spaces.  These restrictions may be loosened at a
@@ -405,7 +411,7 @@ docstring_style=sphinx
 
 ## Numpy
 
-Darglint now has an initial implementation for Numpy-style docstrings.
+Habibilint now has an initial implementation for Numpy-style docstrings.
 Similarly to Sphinx-style docstrings, you can pass a style flag to the
 command:
 
@@ -428,13 +434,13 @@ Add issues or suggestions to the tracking bug, Issue #69.
 
 ### Flake8
 
-Darglint can be used in conjunction with Flake8 as a plugin.  The only
-setup necessary is to install Flake8 and Darglint in the same environment.
-Darglint will pull its configuration from Flake8. So, if you would like to
+Habibilint can be used in conjunction with Flake8 as a plugin.  The only
+setup necessary is to install Flake8 and Habibilint in the same environment.
+Habibilint will pull its configuration from Flake8. So, if you would like to
 lint Sphinx-style comments, then you should have `docstring_style=sphinx` in a
 Flake8 configuration file in the project directory.  The settings would
 be entered under the flake8 configuration, not a separate configuration
-for Darglint.  E.g.:
+for Habibilint.  E.g.:
 
 ```ini
 [flake8]
