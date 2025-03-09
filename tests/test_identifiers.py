@@ -1,13 +1,13 @@
 from unittest import TestCase
 import random
 
-from darglint.parse.identifiers import (
+from habibilint.parse.identifiers import (
     Path,
 )
-from darglint.node import (
+from habibilint.node import (
     CykNode,
 )
-from darglint.token import (
+from habibilint.token import (
     Token,
     TokenType,
 )

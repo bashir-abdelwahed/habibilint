@@ -1,22 +1,22 @@
 from unittest import TestCase
 
-from darglint.lex import (
+from habibilint.lex import (
     lex,
     condense,
 )
-from darglint.parse.long_description import (
+from habibilint.parse.long_description import (
     parse,
 )
-from darglint.parse.identifiers import (
+from habibilint.parse.identifiers import (
     NoqaIdentifier,
 )
-from darglint.parse.grammars.google_long_description import (
+from habibilint.parse.grammars.google_long_description import (
     LongDescriptionGrammar,
 )
-from darglint.parse.cyk import (
+from habibilint.parse.cyk import (
     parse as cyk_parse,
 )
-from darglint.utils import (
+from habibilint.utils import (
     CykNodeUtils,
 )
 

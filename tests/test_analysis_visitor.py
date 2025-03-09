@@ -3,7 +3,7 @@ from unittest import TestCase
 
 from .utils import reindent
 
-from darglint.analysis.analysis_visitor import AnalysisVisitor
+from habibilint.analysis.analysis_visitor import AnalysisVisitor
 
 
 class AnalysisVisitorTests(TestCase):

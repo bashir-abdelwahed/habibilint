@@ -4,27 +4,27 @@ from collections import (
 )
 from unittest import TestCase, skip
 
-from darglint.lex import (
+from habibilint.lex import (
     condense,
     lex,
 )
-from darglint.parse.identifiers import (
+from habibilint.parse.identifiers import (
     ArgumentIdentifier,
     ExceptionIdentifier,
     NoqaIdentifier,
 )
-from darglint.parse.google import (
+from habibilint.parse.google import (
     parse,
 )
-from darglint.errors import (
+from habibilint.errors import (
     IndentError,
 )
-from darglint.utils import (
+from habibilint.utils import (
     ConfigurationContext,
     CykNodeUtils,
 )
-from darglint.docstring.style import DocstringStyle
-from darglint.strictness import Strictness
+from habibilint.docstring.style import DocstringStyle
+from habibilint.strictness import Strictness
 
 
 class DocstringTestCase(TestCase):

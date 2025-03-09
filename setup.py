@@ -31,7 +31,7 @@ class CleanCommand(Command):
 
     """
 
-    description = 'Clean the directory of build artifacts'
+    description = "Clean the directory of build artifacts"
     user_options = []
 
     def initialize_options(self):
@@ -41,50 +41,52 @@ class CleanCommand(Command):
         self.cwd = os.getcwd()
 
     def run(self):
-        assert os.getcwd() == self.cwd, 'We must be in the package root.'
-        subprocess.run(['rm', '-rf', './dist'])
-        subprocess.run(['rm', '-rf', './build'])
+        assert os.getcwd() == self.cwd, "We must be in the package root."
+        subprocess.run(["rm", "-rf", "./dist"])
+        subprocess.run(["rm", "-rf", "./build"])
 
-
-flake8_entry_point = 'flake8.extension'
+# TODO: why a string t a variable if only used once ? 
+flake8_entry_point = "flake8.extension"
 
 
 setup(
-    name="darglint",
-    version="1.8.1",
+    name="habibilint",
+    version="1.9.0",
     author="Terrence Reilly",
     author_email="terrencepreilly@gmail.com",
-    description=("A utility for ensuring Google-style docstrings "
-                 "stay up to date with the source code."),
+    description=(
+        "A utility for ensuring Google-style docstrings "
+        "stay up to date with the source code."
+    ),
     license="MIT",
     keywords="documentation linter development",
-    url="http://github.com/terrencepreilly/darglint",
-    packages=find_packages(exclude=('tests', 'docs')),
-    long_description=read_full_documentation('README.md'),
+    url="http://github.com/bashir-abdelwahed/habibilint",
+    packages=find_packages(exclude=("tests", "docs")),
+    long_description=read_full_documentation("README.md"),
     long_description_content_type="text/markdown",
     entry_points={
-        'console_scripts': [
-            'darglint = darglint.driver:main',
+        "console_scripts": [
+            "habibilint = habibilint.driver:main",
         ],
         flake8_entry_point: [
-            'DAR = darglint.flake8_entry:DarglintChecker',
+            "DAR = habibilint.flake8_entry:HabibilintChecker",
         ],
     },
     install_requires=requirements,
     setup_requires=requirements,
-    tests_require=['pytest', 'tox'] + requirements,
-    python_requires='>=3.6',
+    tests_require=["pytest", "tox"] + requirements,
+    python_requires=">=3.6",
     classifiers=[
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Documentation',
-        'Topic :: Software Development :: Quality Assurance',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.6',
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Documentation",
+        "Topic :: Software Development :: Quality Assurance",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.6",
     ],
     cmdclass={
-        'clean': CleanCommand,
+        "clean": CleanCommand,
     },
 )

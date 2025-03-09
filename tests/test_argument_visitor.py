@@ -1,7 +1,7 @@
 import ast
 from unittest import TestCase
 
-from darglint.analysis.argument_visitor import (
+from habibilint.analysis.argument_visitor import (
     ArgumentVisitor,
 )
 

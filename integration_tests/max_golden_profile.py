@@ -1,6 +1,6 @@
 import cProfile
 import json
-from darglint.docstring.docstring import Docstring
+from habibilint.docstring.docstring import Docstring
 
 if __name__ == '__main__':
     with open('integration_tests/max_golden.json', 'r') as fin:

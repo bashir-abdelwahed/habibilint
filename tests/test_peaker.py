@@ -1,7 +1,7 @@
 from itertools import cycle
 from unittest import TestCase
 
-from darglint.peaker import Peaker
+from habibilint.peaker import Peaker
 
 
 class PeakerTestCase(TestCase):

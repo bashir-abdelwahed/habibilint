@@ -2,7 +2,7 @@
 
 import ast
 
-from darglint.function_description import (
+from habibilint.function_description import (
     get_function_descriptions,
 )
 

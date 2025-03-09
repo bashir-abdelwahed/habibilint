@@ -1,7 +1,7 @@
 import ast
 from unittest import TestCase
 
-from darglint.analysis.assert_visitor import AssertVisitor
+from habibilint.analysis.assert_visitor import AssertVisitor
 
 from .utils import reindent
 

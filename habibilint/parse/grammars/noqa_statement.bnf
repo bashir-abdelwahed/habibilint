@@ -1,0 +1,20 @@
+import terminals.bnf
+
+from habibilint.parse.identifiers import (
+    NoqaIdentifier,
+)
+
+<noqa-maybe>
+    ::= <noqa-statement>
+    | ε
+
+<noqa-statement>
+    ::= @NoqaIdentifier <noqa-head>
+    | @NoqaIdentifier <noqa-head> <colon> <words>
+
+<noqa-head>
+    ::= <hash> <noqa>
+
+<words>
+    ::= <word> <words>
+    | <word>

@@ -3,7 +3,7 @@ from unittest import (
     TestCase,
 )
 
-from darglint.analysis.variable_visitor import (
+from habibilint.analysis.variable_visitor import (
     VariableVisitor,
 )
 
