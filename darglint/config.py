@@ -32,20 +32,21 @@ def get_logger():  # type: () -> Logger
         The default logger for darglint.
 
     """
-    return logging.getLogger('darglint')
+    return logging.getLogger("darglint")
 
 
 POSSIBLE_CONFIG_FILENAMES = (
-    '.darglint',
-    'setup.cfg',
-    'tox.ini',
+    ".darglint",
+    "setup.cfg",
+    "tox.ini",
 )
 
-DEFAULT_DISABLED = {'DAR104'}
+DEFAULT_DISABLED = {"DAR104"}
 
 
 class AssertStyle(Enum):
     """Describes how to handle assertions."""
+
     RAISE = 1
     LOG = 2
 
@@ -59,6 +60,7 @@ class LogLevel(Enum):
     as other options.
 
     """
+
     CRITICAL = logging.CRITICAL
     ERROR = logging.ERROR
     WARNING = logging.WARNING
@@ -69,28 +71,36 @@ class LogLevel(Enum):
     def from_string(cls, level):
         # type: (str) -> LogLevel
         normalized_level = level.lower().strip()
-        if normalized_level == 'critical':
+        if normalized_level == "critical":
             return cls.CRITICAL
-        elif normalized_level == 'error':
+        elif normalized_level == "error":
             return cls.ERROR
-        elif normalized_level == 'warning':
+        elif normalized_level == "warning":
             return cls.WARNING
-        elif normalized_level == 'info':
+        elif normalized_level == "info":
             return cls.INFO
-        elif normalized_level == 'debug':
+        elif normalized_level == "debug":
             return cls.DEBUG
         else:
-            raise ValueError('Unrecognized log level, "{}"'.format(
-                level
-            ))
+            raise ValueError('Unrecognized log level, "{}"'.format(level))
 
 
+# TODO: use dataclasses instead of this class
 class Configuration(object):
-
-    def __init__(self, ignore, message_template, style, strictness,
-                 ignore_regex=None, ignore_raise=[], ignore_properties=False, enable=[],
-                 indentation=4, assert_style=AssertStyle.LOG,
-                 log_level=LogLevel.CRITICAL):
+    def __init__(
+        self,
+        ignore,
+        message_template,
+        style,
+        strictness,
+        ignore_regex=None,
+        ignore_raise=[],
+        ignore_properties=False,
+        enable=[],
+        indentation=4,
+        assert_style=AssertStyle.LOG,
+        log_level=LogLevel.CRITICAL,
+    ):
         # type: (List[str], Optional[str], DocstringStyle, Strictness, Optional[str], List[str], bool, List[str], int, AssertStyle, LogLevel) -> None  # noqa: E501
         """Initialize the configuration object.
 
@@ -123,6 +133,7 @@ class Configuration(object):
         self.indentation = indentation
         self.assert_style = assert_style
         self.log_level = log_level
+        self.workers = 4
 
     @property
     def log_level(self):
@@ -138,15 +149,17 @@ class Configuration(object):
 
     def __str__(self):
         # type: () -> str
-        return '\n'.join([
-            'message_template={message_template}',
-            'style={style}',
-            'strictness={strictness}',
-            'indentation={indentation}',
-            'ignore={errors_to_ignore}',
-            'ignore_regex={ignore_regex}',
-            'ignore_raise={ignore_raise}',
-        ]).format(**self.__dict__)
+        return "\n".join(
+            [
+                "message_template={message_template}",
+                "style={style}",
+                "strictness={strictness}",
+                "indentation={indentation}",
+                "ignore={errors_to_ignore}",
+                "ignore_regex={ignore_regex}",
+                "ignore_raise={ignore_raise}",
+            ]
+        ).format(**self.__dict__)
 
     @classmethod
     def get_default_instance(cls):
@@ -220,46 +233,46 @@ def load_config_file(filename):  # type: (str) -> Configuration
     strictness = Strictness.FULL_DESCRIPTION
     indentation = 4
     log_level = LogLevel.CRITICAL
-    if 'darglint' in config.sections():
-        if 'ignore' in config['darglint']:
-            errors = config['darglint']['ignore']
-            for error in errors.split(','):
+    if "darglint" in config.sections():
+        if "ignore" in config["darglint"]:
+            errors = config["darglint"]["ignore"]
+            for error in errors.split(","):
                 ignore.append(error.strip())
-        if 'enable' in config['darglint']:
-            to_enable = config['darglint']['enable']
-            for error in to_enable.split(','):
+        if "enable" in config["darglint"]:
+            to_enable = config["darglint"]["enable"]
+            for error in to_enable.split(","):
                 enable.append(error.strip())
-        if 'message_template' in config['darglint']:
-            message_template = config['darglint']['message_template']
-        if 'ignore_regex' in config['darglint']:
-            ignore_regex = config['darglint']['ignore_regex']
-        if 'ignore_raise' in config['darglint']:
-            to_ignore_raise = config['darglint']['ignore_raise']
-            for exception in to_ignore_raise.split(','):
+        if "message_template" in config["darglint"]:
+            message_template = config["darglint"]["message_template"]
+        if "ignore_regex" in config["darglint"]:
+            ignore_regex = config["darglint"]["ignore_regex"]
+        if "ignore_raise" in config["darglint"]:
+            to_ignore_raise = config["darglint"]["ignore_raise"]
+            for exception in to_ignore_raise.split(","):
                 ignore_raise.append(exception.strip())
-        if 'ignore_properties' in config['darglint']:
-            ignore_properties = bool(config['darglint']['ignore_properties'])
-        if 'docstring_style' in config['darglint']:
-            raw_style = config['darglint']['docstring_style']
+        if "ignore_properties" in config["darglint"]:
+            ignore_properties = bool(config["darglint"]["ignore_properties"])
+        if "docstring_style" in config["darglint"]:
+            raw_style = config["darglint"]["docstring_style"]
             style = DocstringStyle.from_string(raw_style)
 
-        if 'strictness' in config['darglint']:
-            raw_strictness = config['darglint']['strictness']
+        if "strictness" in config["darglint"]:
+            raw_strictness = config["darglint"]["strictness"]
             strictness = Strictness.from_string(raw_strictness)
 
-        if 'indentation' in config['darglint']:
+        if "indentation" in config["darglint"]:
             try:
-                indentation = int(config['darglint']['indentation'])
+                indentation = int(config["darglint"]["indentation"])
             except ValueError:
                 raise Exception(
-                    'Unrecognized value for indentation.  Expected '
-                    'a non-zero, positive integer, but received {}'.format(
-                        config['darglint']['indentation']
+                    "Unrecognized value for indentation.  Expected "
+                    "a non-zero, positive integer, but received {}".format(
+                        config["darglint"]["indentation"]
                     )
                 )
 
-        if 'log_level' in config['darglint']:
-            log_level = LogLevel.from_string(config['darglint']['log_level'])
+        if "log_level" in config["darglint"]:
+            log_level = LogLevel.from_string(config["darglint"]["log_level"])
     return Configuration(
         ignore=ignore,
         message_template=message_template,
@@ -315,12 +328,12 @@ def find_config_file_in_path(path):  # type: (str) -> Optional[str]
             fully_qualified_path = os.path.join(path, filename)
             try:
                 config.read(fully_qualified_path)
-                if 'darglint' in config.sections():
+                if "darglint" in config.sections():
                     return fully_qualified_path
             except configparser.ParsingError:
-                get_logger().error('Unable to parse file {}'.format(
-                    fully_qualified_path
-                ))
+                get_logger().error(
+                    "Unable to parse file {}".format(fully_qualified_path)
+                )
     return None
 
 
